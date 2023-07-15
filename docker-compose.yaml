@@ -3,8 +3,23 @@ nginx-proxy:
   restart: always
   ports:
     - "80:80"
+    - "443:443"
   volumes:
     - /var/run/docker.sock:/tmp/docker.sock:ro
+    - ./certs:/etc/nginx/certs:ro
+    - /etc/nginx/vhost.d
+    - /usr/share/nginx/html
+  labels:
+    - com.github.jrcs.letsencrypr_nginx_proxy_companion.gninx_proxy
+
+letsencrypt:
+  image: jrcs/letsencrypt-nginx-proxy-companion
+  restart: always
+  volumes:
+    - ./certs:/etc/nginx/certs:rw
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+  volumes_from:
+    - nginx-proxy:rw
 
 www:
   image: nginx
@@ -15,3 +30,5 @@ www:
     - ./src:/usr/share/nginx/html:ro
   environment:
     - VIRTUAL_HOST=dgocode.com,www.dgocode.com
+    - LETSENCRYPT_HOST=dgocode.com,www.dgocode.com
+    - LETSENCRYPT_EMAIL=me@dgocode.com
