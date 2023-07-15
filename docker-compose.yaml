@@ -1,6 +1,6 @@
 www:
-  image: nginx;
-  restart: always;
+  image: nginx
+  restart: always
   ports:
     - "80:80"
   volumes:
