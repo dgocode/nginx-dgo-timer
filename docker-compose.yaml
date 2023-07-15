@@ -9,7 +9,7 @@ services:
       - "443:443"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - certs:/etc/nginx/certs:ro
+      - ./certs:/etc/nginx/certs:ro
       - vhostd:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
       - acme:/etc/acme.sh
@@ -36,8 +36,8 @@ services:
     volumes:
       - ./www:/usr/share/nginx/html:ro
     environment:
-      - VIRTUAL_HOST=dgocode.com,www.dgocode.com
-      - LETSENCRYPT_HOST=dgocode.com,www.dgocode.com
+      - VIRTUAL_HOST=dgocode.com
+      - LETSENCRYPT_HOST=dgocode.com
       - LETSENCRYPT_EMAIL=ldxnotes@gmail.com
     depends_on:
       - nginx-proxy
