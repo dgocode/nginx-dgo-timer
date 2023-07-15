@@ -36,8 +36,8 @@ services:
     volumes:
       - ./www:/usr/share/nginx/html:ro
     environment:
-      - VIRTUAL_HOST=dgocode.com
-      - LETSENCRYPT_HOST=dgocode.com
+      - VIRTUAL_HOST=dgocode.com,www.dgocode.com
+      - LETSENCRYPT_HOST=dgocode.com,www.dgocode.com
       - LETSENCRYPT_EMAIL=me@dgocode.com
     depends_on:
       - nginx-proxy
