@@ -4,7 +4,7 @@ nginx-proxy:
   ports:
     - "80:80"
   volumes:
-    - /var/run/docker.sock:/temp/docker.sock:ro
+    - /var/run/docker.sock:/tmp/docker.sock:ro
 
 www:
   image: nginx
