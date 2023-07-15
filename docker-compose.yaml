@@ -13,5 +13,5 @@ www:
     - "80"
   volumes:
     - ./src:/usr/share/nginx/html:ro
-  enviroment:
+  environment:
     - VIRTUAL_HOST=dgocode.com,www.dgocode.com
