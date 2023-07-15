@@ -1,7 +1,17 @@
-www:
-  image: nginx
+nginx-proxy:
+  image: jwilder/nginx-proxy
   restart: always
   ports:
     - "80:80"
   volumes:
+    - /var/run/docker.sock:/temp/docker.sock:ro
+
+www:
+  image: nginx
+  restart: always
+  expose:
+    - "80"
+  volumes:
     - ./src:/usr/share/nginx/html:ro
+  enviroment:
+    - VIRTUAL_HOST=dgocode.com,www.dgocode.com
