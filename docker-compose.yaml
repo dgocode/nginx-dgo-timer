@@ -42,6 +42,16 @@ services:
     depends_on:
       - nginx-proxy
       - letsencrypt
+    command: >
+      /bin/bash -c "echo '
+      server {
+          listen 80;
+          server_name 142.93.254.84;
+          return 301 https://dgocode.com;
+      }
+      ' > /etc/nginx/conf.d/custom.conf && nginx -g 'daemon off;'"
+
+
 volumes: 
   certs:
   html:
